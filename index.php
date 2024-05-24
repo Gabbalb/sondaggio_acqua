@@ -48,7 +48,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             $username = $_SESSION['username'];
             $id = UserRepository::getID($username);
             $spesePrec = \Model\NoteRepository::listAll($id);
-            echo $template->render('lista', [
+            echo $template->render('lista_form_utente', [
                 'username' => $username,
                 'spesePrec' => $spesePrec,
             ]);

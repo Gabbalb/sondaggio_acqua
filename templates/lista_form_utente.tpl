@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Forms</title>
+    <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
@@ -31,7 +31,7 @@
                     </div>
                 </li>
                 <li><a href="#" class="block text-gray-700 hover:text-gray-900">Home</a></li>
-                <li><a href="#" class="block text-gray-700 hover:text-gray-900">Login</a></li>
+                <li><a href="index.php" class="block text-gray-700 hover:text-gray-900">Logout</a></li>
                 <li><a href="#" class="block text-gray-700 hover:text-gray-900">Support</a></li>
                 <!-- Avatar and dropdown menu -->
             </ul>
@@ -47,35 +47,34 @@
 </header>
 
 
-
 <div class="container bg-gray-100 grid grid-cols-1 gap-1">
-    <?php
 
-    foreach ($non_completati as $form) {
-    echo '<a href="form.php?id=' . $form['id'] . '" class="titolo">
+    <?php
+        for ($i = 0; $i < 3; $i++) {
+            echo '<a href="form.php?id=' . $i . '" class="titolo">
+
     <article class="flex items-end justify-between rounded-lg border border-gray-100 bg-white p-6 mr-6 ml-6 mt-3">
         <div>
-            <p class="text-xl font-medium text-gray-900">' . $form['titolo'] . '</p>
-            <p class="text-sm text-gray-500"> ' . $form['descrizione'] . ' </p>
+            <p class="text-sm text-gray-500">Form</p>
+
+            <p class="text-xl font-medium text-gray-900">Titolo Form</p>
         </div>
+
         <div class="inline-flex gap-2 rounded-full pl-1.5 pr-1.5 bg-red-100  text-red-600">
-            <span class="text-xs font-medium">  Not completed  </span>
+
+            <span class="text-xs font-medium">  Da Fare  </span>
         </div>
     </article>
+
     </a>';
     }
     ?>
 </div>
 
 
-
-
-
-
-
 <span class="flex items-center bg-gray-100 mt-4 mb-4">
   <span class="h-px flex-1 bg-black"></span>
-  <span class="shrink-0 px-6">Form Completed</span>
+  <span class="shrink-0 px-6">Form Completati</span>
   <span class="h-px flex-1 bg-black"></span>
 </span>
 
@@ -83,7 +82,7 @@
 <div class="container bg-gray-100 grid grid-cols-1 gap-1">
 
     <?php
-        for ($i = 0; $i < 1; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             echo '<a href="form.php?id=' . $i . '" class="titolo">
 
     <article class="flex items-end justify-between rounded-lg border border-gray-100 bg-white p-6 mr-6 ml-6 mt-3">
@@ -95,34 +94,7 @@
 
         <div class="inline-flex gap-2 rounded-full pl-2 pr-2 bg-green-100 p-1 text-green-600">
 
-            <span class="text-xs font-medium"> Completed </span>
-        </div>
-    </article>
-
-    </a>';
-    }
-    ?>
-</div>
-
-
-
-
-<div class="container bg-gray-100 grid grid-cols-1 gap-1">
-
-    <?php
-        foreach ($completati as $form) {
-    echo '<a href="form.php?id=' . $form['id'] . '" class="titolo">
-
-    <article class="flex items-end justify-between rounded-lg border border-gray-100 bg-white p-6 mr-6 ml-6 mt-3">
-        <div>
-            <p class="text-xl font-medium text-gray-900">' . $form['titolo'] . '</p>
-            <p class="text-sm text-gray-500">' . $form['descrizione'] . '</p>
-
-        </div>
-
-        <div class="inline-flex gap-2 rounded-full pl-2 pr-2 bg-green-100 p-1 text-green-600">
-
-            <span class="text-xs font-medium"> Completed </span>
+            <span class="text-xs font-medium"> Completato </span>
         </div>
     </article>
 

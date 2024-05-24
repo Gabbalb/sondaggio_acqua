@@ -131,6 +131,32 @@ AND id_form = :id';
         return $result->fetchColumn();
     }
 
+    public static function cancellaRispostebyId($id_utente){
+        try {
+            $pdo = Connection::getInstance();
+
+            // Verifica se l'utente con l'ID fornito ha delle spese nel database
+            $sql = 'DELETE FROM risposte WHERE Id_utente = :id_utente';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['id_utente' => $id_utente]);
+            $spese = $stmt->fetchAll();
+
+            if (!$spese) {
+                // Se l'utente non ha spese, ritorna un array vuoto
+                return [];
+            }
+
+            return $spese;
+        } catch (PDOException $e) {
+            // Gestione degli errori di PDO
+            error_log("Errore durante l'esecuzione della query: " . $e->getMessage());
+            throw new Exception("Errore durante l'esecuzione della query.");
+        } catch (Exception $e) {
+            // Gestione degli altri tipi di errori
+            error_log("Errore: " . $e->getMessage());
+            throw $e;
+        }
+    }
 
 
 

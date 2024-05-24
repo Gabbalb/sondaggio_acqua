@@ -95,7 +95,7 @@ class UserRepository
     {
         try {
             $pdo = Connection::getInstance();
-            $sql = 'SELECT * FROM sondaggi_acqua.users'; // Assicurati che il nome della colonna sia corretto
+            $sql = 'SELECT * FROM sondaggio_acqua.users'; // Assicurati che il nome della colonna sia corretto
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
 
@@ -131,6 +131,15 @@ class UserRepository
         }
     }
 
+
+    public static function rimuoviUtente($id)
+    {
+        NoteRepository::cancellaRispostebyId($id);
+        $pdo = Connection::getInstance();
+        $sql = 'DELETE FROM users WHERE id = :id';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id' => $id]);
+    }
 
 
 }

@@ -43,5 +43,6 @@
 # Progetti esclusi
 vendor/
 .idea/
+.idea/webServers.xml
 config.php
 composer.json
