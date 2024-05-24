@@ -42,5 +42,6 @@
 
 # Progetti esclusi
 vendor/
+.idea/
 config.php
 composer.json
