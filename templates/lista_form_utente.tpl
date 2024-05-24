@@ -48,28 +48,24 @@
 
 
 <div class="container bg-gray-100 grid grid-cols-1 gap-1">
-
     <?php
-        for ($i = 0; $i < 3; $i++) {
-            echo '<a href="form.php?id=' . $i . '" class="titolo">
 
+    foreach ($non_completati as $form) {
+    echo '<a href="form.php?id=' . $form['id'] . '" class="titolo">
     <article class="flex items-end justify-between rounded-lg border border-gray-100 bg-white p-6 mr-6 ml-6 mt-3">
         <div>
-            <p class="text-sm text-gray-500">Form</p>
-
-            <p class="text-xl font-medium text-gray-900">Titolo Form</p>
+            <p class="text-xl font-medium text-gray-900">' . $form['titolo'] . '</p>
+            <p class="text-sm text-gray-500"> ' . $form['descrizione'] . ' </p>
         </div>
-
         <div class="inline-flex gap-2 rounded-full pl-1.5 pr-1.5 bg-red-100  text-red-600">
-
-            <span class="text-xs font-medium">  Da Fare  </span>
+            <span class="text-xs font-medium">  Not completed  </span>
         </div>
     </article>
-
     </a>';
     }
     ?>
 </div>
+
 
 
 <span class="flex items-center bg-gray-100 mt-4 mb-4">
@@ -82,7 +78,7 @@
 <div class="container bg-gray-100 grid grid-cols-1 gap-1">
 
     <?php
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             echo '<a href="form.php?id=' . $i . '" class="titolo">
 
     <article class="flex items-end justify-between rounded-lg border border-gray-100 bg-white p-6 mr-6 ml-6 mt-3">
@@ -94,7 +90,7 @@
 
         <div class="inline-flex gap-2 rounded-full pl-2 pr-2 bg-green-100 p-1 text-green-600">
 
-            <span class="text-xs font-medium"> Completato </span>
+            <span class="text-xs font-medium"> Completed </span>
         </div>
     </article>
 

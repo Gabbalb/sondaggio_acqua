@@ -45,7 +45,8 @@
         <div>
             <p class="text-sm text-gray-500">Form</p>
 
-            <p class="text-xl font-medium text-gray-900">Titolo Form</p>
+            <p class="text-xl font-medium text-gray-900"><?=$questions[0]['titolo']?></p>
+            <p class="text-sm font-medium text-gray-900"><?=$questions[0]['descrizione']?></p>
         </div>
 
     </article>
@@ -53,36 +54,27 @@
     </a>
 </div>
 
+<form method="get">
+    <div class="container mx-auto bg-gray-100 grid grid-cols-1 gap-1 p-4">
 
-<div class="container bg-gray-100 grid grid-cols-1 gap-1">
-
-    <?php for ($i = 0; $i < 3; $i++): ?>
-
-    <article class=" place-content-center flex items-center justify-between rounded-lg border border-gray-100 bg-white p-6 mr-20 ml-20 mt-3">
-        <div>
-            <p class="text-sm mb-4 text-gray-500">Domanda <?= $i + 1 ?> - Valuta da 1 a 7</p>
-
-
-            <p class="text-l font-medium text-gray-900 mb-10">Are you satisfied of the water quality of your region?</p>
-
-            <p class="text-xl font-medium text-gray-900 text-center">
-
-            <div class="relative mb-6">
-                <label for="labels-range-input" class="sr-only">Labels range</label>
-                <input id="labels-range-input" type="range" value="4" min="0" max="7" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min (0)</span>
-                <span id="val" class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">0</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max (7)</span>
+        <?php
+     $i = 0;
+     foreach ($questions as $question): ?>
+        <article class="flex flex-col items-center justify-between rounded-lg border border-gray-100 bg-white p-6 w-full mx-auto">
+            <div class="w-full">
+                <p class="text-sm mb-4 text-gray-500">Domanda <?= $i + 1 ?> - Valuta da 1 a 7</p>
+                <p class="text-l font-medium text-gray-900 mb-10"><?=$question['domanda']?></p>
+                <div class="relative w-full mb-6">
+                    <input name="question_<?= $i ?>" id="range-input-<?= $i ?>" type="range" value="4" min="0" max="7" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                    <span class="text-sm text-gray-500 dark:text-gray-400 absolute left-0 -bottom-6">Min (0)</span>
+                    <span id="val-<?= $i ?>" class="text-sm text-gray-500 dark:text-gray-400 absolute left-1/2 transform -translate-x-1/2 -bottom-6">4</span>
+                    <span class="text-sm text-gray-500 dark:text-gray-400 absolute right-0 -bottom-6">Max (7)</span>
+                </div>
             </div>
+        </article>
+        <?php $i++; endforeach; ?>
 
-
-            </p>
-        </div>
-
-    </article>
-
-    </a>
-    <?php endfor; ?>
+    </div>
 
 
     <div>
@@ -123,7 +115,7 @@
     </div>
 
 </div>
-
+</form>
 
 
 
@@ -138,16 +130,19 @@
     rangeInputs.forEach(function (rangeInput) {
         // Aggiungi un ascoltatore per l'evento input
         rangeInput.addEventListener('input', function () {
-            // Seleziona lo span che mostra il valore del range
-            var rangeValueSpan = document.getElementById("val");
+            // Ottieni l'ID dell'input corrente e calcola l'ID dello span di valore corrispondente
+            var idNum = this.id.split('-')[2];
+            var rangeValueSpan = document.getElementById('val-' + idNum);
 
             // Imposta il testo dello span al valore corrente del range
-            rangeValueSpan.textContent = rangeInput.value;
+            rangeValueSpan.textContent = this.value;
         });
 
         // Trigger dell'evento input per aggiornare il valore iniziale
         rangeInput.dispatchEvent(new Event('input'));
     });
+
+
 
     function toggleModal(open) {
         const modal = document.getElementById('modal');
