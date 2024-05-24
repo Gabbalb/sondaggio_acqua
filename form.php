@@ -86,8 +86,8 @@ function invio_email($email, $risposte, $questions) {
         <div class="content">
             <p>Dear User,</p>
             <p>Thank you for participating in our water questionnaire. We have received your responses and appreciate them greatly. Below, you can find a summary of your answers:</p>
-            <p><strong>Form Title:</strong> ' . htmlspecialchars($questions[0]['titolo']) . '</p>
-            <p><strong>Form Description:</strong> ' . htmlspecialchars($questions[0]['descrizione']) . '</p>
+            <p><strong>Form Title:</strong> ' . ($questions[0]['titolo']) . '</p>
+            <p><strong>Form Description:</strong> ' . ($questions[0]['descrizione']) . '</p>
             <ul>';
     foreach ($questions as $index => $question) {
         $message .= '<li><strong>' . htmlspecialchars($question['domanda']) . ':</strong> ' . htmlspecialchars($risposte[$index + 1]) . '</li>';
@@ -109,6 +109,7 @@ function invio_email($email, $risposte, $questions) {
 
     try {
         $sent = $mail->sendEmail($email, $subject, $message);
+        echo 'email inviata';
     } catch (Exception $e) {
         $sent = false;
     }
@@ -122,8 +123,37 @@ if(isset($_GET['id'])) {
 
 
 $questions = Model\NoteRepository::listQuestionByForm($id);
+//var_dump($questions[0]['titolo']);
+
+/*
+if (isset($_GET['question_1'])) {
+    $risposte = [];
+
+    foreach ($questions as $index => $question) {
+        $i = $index + 1;
+        if (isset($_GET['question_' . $i])) {
+            $risposta = $_GET['question_' . $i];
+
+            var_dump($risposta);
+
+            // Risposte in un vettore, serve per l'email
+            $risposte[$i] = $risposta;
+
+
+            //funzione temporaneamente commentata, altriemnti ho mille email
+        }
+    }
+
+    $email_user = "zanotti18luca@gmail.com";
+
+    //invio_email($email_user, $risposte, $questions);
+
+}
+*/
 
 if (isset($_GET['question_1'])) {
+
+    $questions = Model\NoteRepository::listQuestionByForm($id);
 
     $risposte = [];
     for ($i = 1; $i <= sizeof($questions); $i++) {
@@ -134,15 +164,18 @@ if (isset($_GET['question_1'])) {
         $risposte[$i] = $domanda;
     }
 
+    var_dump($risposte);
     //email utente
     $email_user = 'zanotti18luca@gmail.com';
-    var_dump($questions);
 
     //funzione temporaneamente commentata, altriemnti ho mille email
+
     //invio_email($email_user, $risposte, $questions);
 
 
 }
+
+
 
 echo $template->render('form', [
     'questions' => $questions,

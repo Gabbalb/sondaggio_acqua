@@ -95,6 +95,7 @@
 </div>
 
 <!--domande-->
+
 <form method="get">
 
     <?php
@@ -108,7 +109,7 @@ foreach ($questions as $question): ?>
     </div>
     <?php $i++; endforeach; ?>
 
-    <input type="submit" value="invia risposte" id="submit-button">
+    <input type="submit" value="invia risposte">
 
 
 </form>
@@ -126,17 +127,7 @@ foreach ($questions as $question): ?>
     });
 
 
-    function confirmSubmission(event) {
-        var confirmed = confirm("Are you sure you want to submit your responses?");
-        if (!confirmed) {
-        event.preventDefault(); // Prevent form submission if not confirmed
-    }
-    }
 
-        document.addEventListener("DOMContentLoaded", function() {
-        var submitButton = document.getElementById("submit-button");
-        submitButton.addEventListener("click", confirmSubmission);
-    });
 
 </script>
 
