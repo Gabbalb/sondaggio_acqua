@@ -158,7 +158,12 @@ AND id_form = :id';
         }
     }
 
-
+    public static function getProvince(){
+        $pdo = Connection::getInstance();
+        $sql = 'SELECT id, nome_province AS province FROM province';
+        $result = $pdo->query($sql);
+        return $result->fetchAll();
+    }
 
 
 }

@@ -105,6 +105,17 @@
                     </div>
 
 
+                    <div class="col-span-6">
+                        <label for="provincia" class="block w-full text-sm font-medium text-gray-900">Province</label>
+                        <select name="provincia" id="type" class="mt-1.5 p-3 w-full rounded-lg border-gray-300 border-solid border-2 bg-white text-gray-700 sm:text-sm">
+                            <?php foreach ($province as $provincia): ?>
+                            <option value="<?php echo htmlspecialchars($provincia['id']); ?>"><?php echo htmlspecialchars($provincia['province']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+
+
                     <div class= "col-span-6">
                         <label for="type" class="block w-full text-sm font-medium text-gray-900"> Permission </label>
 
@@ -113,10 +124,12 @@
                                 id="type"
                                 class="mt-1.5 p-3 w-full rounded-lg border-gray-300 border-solid border-2 bg-white text-gray-700 sm:text-sm"
                         >
-                            <option value="1">Administrator</option>
                             <option value="3">Utente</option>
+                            <option value="1">Administrator</option>
+
                         </select>
                     </div>
+
 
                     <div class="col-span-6">
                         <p class="text-sm text-gray-500">
